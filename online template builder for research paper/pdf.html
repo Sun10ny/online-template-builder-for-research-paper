@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html>
+	<head>
+
+		<style type="text/css">
+			body{
+				padding-left: 20px;
+				padding-right: 20px;
+				font-family: "Times New Roman", Times, serif;
+                margin: 0.5in;
+			}
+			#download-button{
+				padding: 5px;
+				border-radius: 15px;
+				background-color: rgb(220, 91, 91);
+				border:1px solid red;
+				margin-bottom: 10px;
+			}
+			#download-button:hover{
+				background-color: rgb(232, 39, 39);
+			}
+			#invoice{
+				/*text-align: center;*/
+				border:2px solid black;
+			    overflow-wrap: normal;
+				padding: 10px;
+				width: 100%;
+				
+				
+			}
+			#project_title{
+				font-weight: bold;
+				font-size: 30px;
+			}
+			#personal-details{
+				font-weight: bold;
+				font-size: 10px;
+				font-style: italic;
+				display:flex;
+			}
+			#chamber{
+				column-count: 2;
+                column-gap: 0.5in;
+				column-span: all;
+				
+			}
+			table{
+				width:100%;
+				background-color: red;
+			}
+			td{
+				width:50%;
+				background-color: rgb(153, 0, 255);
+			}
+			/*#left_chamber{
+				width: 49%;	
+				float:left;
+			}
+			#right_chamber{
+				width: 49%;	
+				float:right;
+			}*/
+			#project_abstract,#keyword_data{
+
+				text-align: justify;
+				margin-left: 10%;
+				font-weight: bold;
+			
+			}
+			#heading{
+
+				font-size: 15px;
+				font-weight: bold;
+
+			}
+			
+			
+
+		</style>
+
+		<meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	    <meta name="description" content="">
+	    <meta name="author" content="">
+	    <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>HTML-to-PDF Example</title>
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1"
+		/>
+		<!-- html2pdf CDN link -->
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+			integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		></script>
+	</head>
+	<body>
+		<center><button id="download-button">Download as PDF</button></center>
+		<div id="invoice">
+			<center><p id="project_title">Project Title</p> </center>
+			<div id="personal-details">
+				<div id="first">
+						<p id="primary_author_name">primary Author Name</p>
+						<p id="primary_author_department">primary Author department</p>
+						<p id="primary_author_college">primary Author college</p>
+						<p id="primary_author_city">primary Author city</p>
+						<p id="primary_author_country">primary Author country</p>
+						<p id="primary_author_email">primary Author email</p>
+						
+				</div>
+				<div id="second" style="display: none;">
+
+					<p id="secondary_author_name">Secondary Author Name</p>
+					<p id="2_author_department">primary Author department</p>
+					<p id="2_author_college">primary Author college</p>
+					<p id="2_author_city">primary Author city</p>
+					<p id="2_author_country">primary Author country</p>
+					<p id="secondary_author_email">Secondary Author email</p>
+
+				</div> 
+				<div id="third" style="display: none;">
+
+					<p id="3_author_name">3 Author Name</p>
+					<p id="3_author_department">primary Author department</p>
+					<p id="3_author_college">primary Author college</p>
+					<p id="3_author_city">primary Author city</p>
+					<p id="3_author_country">primary Author country</p>
+					<p id="3_author_email">3 Author email</p>
+
+				</div>
+				<div  id="fourth" style="display: none;">
+
+					<p id="4_author_name">4 Author Name</p>
+					<p id="4_author_department">primary Author department</p>
+					<p id="4_author_college">primary Author college</p>
+					<p id="4_author_city">primary Author city</p>
+					<p id="4_author_country">primary Author country</p>
+					<p id="4_author_email">4 Author email</p>
+
+				</div>
+			</div>
+
+            <div id="chamber">		
+  
+				<div id="left_chamber">
+					
+					<div id="abs">
+						<p id="heading">Abstract</p>
+						<p id="project_abstract">Project Abstract</p>
+					 </div>
+			
+					<div id="keyword_data_info">
+						<p id="heading">Keywords</p>
+						<p id="keyword_data">Project Keywords</p>
+					</div>
+
+
+					<div>
+						<p id="heading">Introduction</p>
+						<!--<p id="heading">Heading</p>-->
+						<p id="heading_topic">Heading topic</p>
+						<!--<p >Content</p>-->
+						<p id="content-det">Content topic</p>
+						
+					</div>
+
+					<div id="secintro" style="display: none;">
+						<p id="sechead">Heading topic</p>
+						<!--<p >Content</p>-->
+						<p id="content-det-2">Content topic</p>
+					  </div>
+
+					  <div id="3intro" style="display: none;">
+						<p id="thirdhead">Heading topic</p>
+						<!--<p >Content</p>-->
+						<p id="content-det-3">Content topic</p>
+					  </div>
+						
+				</div>
+
+
+				<div id="right_chamber">
+					
+
+					<div id="1literature">
+						<p id="heading"> Literature Survey</p>
+						<!--<p>Content</p>-->
+						<p id="content-det-lit">Content Details</p>
+					</div>
+
+					<div id="2literature" style="display: none;">
+						<p id="heading" >Second Literature Survey</p>
+						<!--<p>Content</p>-->
+						<p id="content-det-lit2">Content Details</p>
+					</div>
+
+					<div id="3literature" style="display: none;">
+						<p id="heading" >Third Literature Survey</p>
+						
+						<!--<p>Content</p>-->
+						<p id="content-det-lit3">Content Details</p>
+					</div>
+
+					<div id="imageupl" style="display: none;">
+						<p >images</p>
+						<p id="image-det">images</p>
+					  </div>
+
+				
+					<div>
+						<p id="heading" >Results</p>
+						<p id="result-det">Project Results</p>
+					</div>
+				
+					<div>
+						<center><p id="heading">Conclusion</p></center>
+						<p id="conclusion-det">Project Conclusion</p>
+					</div>
+				
+					<div>
+						<center><p id="heading">Reference</p></center>
+						<p id="references-det">project_title Reference</p>
+					</div>
+					
+				</div>
+		</div>
+		
+		</div>
+
+		<script>
+			const firebaseConfig = {
+
+				apiKey: "AIzaSyBsC4uL_3jvxjRwD0sDc3r0oFNYY09ebW8",
+                authDomain: "myapplication-70264.firebaseapp.com",
+                databaseURL: "https://myapplication-70264-default-rtdb.firebaseio.com",
+                projectId: "myapplication-70264",
+                storageBucket: "myapplication-70264.appspot.com",
+                messagingSenderId: "195317923419",
+                appId: "1:195317923419:web:f4d9d233f595ef4bdd897e",
+             measurementId: "G-G2VYJV69N0"
+
+				};
+				//start the server
+				firebase.initializeApp(firebaseConfig);
+				//authentication object
+				var authenticationobject = firebase.auth();
+
+
+
+		</script>
+
+		<script>
+			const button = document.getElementById('download-button');
+
+			function generatePDF() {
+				// Choose the element that your content will be rendered to.
+				const element = document.getElementById('invoice');
+				// Choose the element and save the PDF for your user.
+				html2pdf().from(element).save();
+			}
+
+			button.addEventListener('click', generatePDF);
+		</script>
+   
+		<script>
+
+			var idd;
+			    firebase.auth().onAuthStateChanged(function(user){
+			    if(user)
+			    {
+			         idd=user.email;
+			        fetchdata();
+			           
+			    }
+			  
+
+			});
+			
+			function fetchdata(){
+
+				  firebase.database().ref('paper_details').once('value',function(snapshotupdate){
+				      snapshotupdate.forEach(function(childsnapshotupdate){ 
+				        var id=childsnapshotupdate.val().email;
+				    
+				        if(id==idd){
+				          
+				          document.getElementById("project_title").innerHTML=childsnapshotupdate.val().title;
+
+  							document.getElementById("primary_author_name").innerHTML=childsnapshotupdate.val().authorname;
+  							document.getElementById("primary_author_email").innerHTML=childsnapshotupdate.val().emailid;
+  							document.getElementById("primary_author_department").innerHTML=childsnapshotupdate.val().department;
+  							document.getElementById("primary_author_country").innerHTML=childsnapshotupdate.val().country;
+  							document.getElementById("primary_author_city").innerHTML=childsnapshotupdate.val().city;
+  							document.getElementById("primary_author_college").innerHTML=childsnapshotupdate.val().college;
+
+
+							document.getElementById("secondary_author_email").innerHTML=childsnapshotupdate.val().secondemailid;
+							document.getElementById("2_author_department").innerHTML=childsnapshotupdate.val().seconddepartment;
+  							document.getElementById("2_author_country").innerHTML=childsnapshotupdate.val().secondcountry;
+  							document.getElementById("2_author_city").innerHTML=childsnapshotupdate.val().secondcity;
+  							document.getElementById("2_author_college").innerHTML=childsnapshotupdate.val().secondcollege;
+
+							document.getElementById("3_author_email").innerHTML=childsnapshotupdate.val().thirdemailid;
+							document.getElementById("3_author_department").innerHTML=childsnapshotupdate.val().thirddepartment;
+  							document.getElementById("3_author_country").innerHTML=childsnapshotupdate.val().thirdcountry;
+  							document.getElementById("3_author_city").innerHTML=childsnapshotupdate.val().thirdcity;
+  							document.getElementById("3_author_college").innerHTML=childsnapshotupdate.val().thirdcollege;
+
+							document.getElementById("4_author_email").innerHTML=childsnapshotupdate.val().fourthemailid;
+							document.getElementById("4_author_department").innerHTML=childsnapshotupdate.val().fourthdepartment;
+  							document.getElementById("4_author_country").innerHTML=childsnapshotupdate.val().fourthcountry;
+  							document.getElementById("4_author_city").innerHTML=childsnapshotupdate.val().fourthcity;
+  							document.getElementById("4_author_college").innerHTML=childsnapshotupdate.val().fourthcollege;
+
+  							document.getElementById("project_abstract").innerHTML=childsnapshotupdate.val().abstract;
+  							document.getElementById("heading_topic").innerHTML=childsnapshotupdate.val().heading;
+  							
+  							document.getElementById("keyword_data").innerHTML=childsnapshotupdate.val().keyword;
+  							if(childsnapshotupdate.val().keyword=="na"){
+  								document.getElementById("keyword_data_info").style.display="none";
+
+  							}
+  							else{
+									document.getElementById("keyword_data_info").style.display="block";
+  							}
+							  
+							  document.getElementById("content-det").innerHTML=childsnapshotupdate.val().content;
+							  document.getElementById("content-det-2").innerHTML=childsnapshotupdate.val().seccontent;
+							  document.getElementById("content-det-3").innerHTML=childsnapshotupdate.val().thirdcontent;
+							  document.getElementById("content-det-lit").innerHTML=childsnapshotupdate.val().literaturecontent;
+							  /*document.getElementById("content-det-lit2").innerHTML=childsnapshotupdate.val().secondliteraturecontent;
+							  document.getElementById("content-det-lit3").innerHTML=childsnapshotupdate.val().thirdliteraturecontent;*/
+
+							  /*document.getElementById("title").innerHTML=childsnapshotupdate.val().firsttitle;
+							  document.getElementById("author").innerHTML=childsnapshotupdate.val().author;
+							  document.getElementById("year").innerHTML=childsnapshotupdate.val().year;*/
+
+							  document.getElementById("content-det-lit2").innerHTML=childsnapshotupdate.val().secondliteraturecontent;
+							  if(childsnapshotupdate.val().secondliteraturecontent==""){
+  								document.getElementById("2literature").style.display="none";
+
+  							}
+  							else{
+									document.getElementById("2literature").style.display="block";
+  							}
+							 /* document.getElementById("2author").innerHTML=childsnapshotupdate.val().secondauthor;
+							  document.getElementById("2year").innerHTML=childsnapshotupdate.val().secondyear;*/
+
+
+							  document.getElementById("content-det-lit3").innerHTML=childsnapshotupdate.val().thirdliteraturecontent;
+							  if(childsnapshotupdate.val().thirdliteraturecontent==""){
+  								document.getElementById("3literature").style.display="none";
+
+  							}
+  							else{
+									document.getElementById("3literature").style.display="block";
+  							}
+						
+
+							 
+							  document.getElementById("result-det").innerHTML=childsnapshotupdate.val().result;
+
+							  document.getElementById("conclusion-det").innerHTML=childsnapshotupdate.val().conclusion;
+
+							  document.getElementById("references-det").innerHTML=childsnapshotupdate.val().references;
+
+
+							  document.getElementById("sechead").innerHTML=childsnapshotupdate.val().secondheading;
+  							if(childsnapshotupdate.val().secondheading==""){
+  								document.getElementById("secintro").style.display="none";
+
+  							}
+  							else{
+									document.getElementById("secintro").style.display="block";
+  							}
+
+
+							document.getElementById("thirdhead").innerHTML=childsnapshotupdate.val().thirdheading;
+  							if(childsnapshotupdate.val().thirdheading==""){
+  								document.getElementById("3intro").style.display="none";
+
+  							}
+  							else{
+									document.getElementById("3intro").style.display="block";
+  							}
+							  
+
+							  document.getElementById("secondary_author_name").innerHTML=childsnapshotupdate.val().secondauthorname;
+  							if(childsnapshotupdate.val().secondauthor==""){
+  								document.getElementById("second").style.display="none";
+
+  							}
+  							else{
+									document.getElementById("second").style.display="block";
+  							}
+
+
+							  document.getElementById("3_author_name").innerHTML=childsnapshotupdate.val().thirdauthorname;
+  							if(childsnapshotupdate.val().thirdauthor==""){
+  								document.getElementById("third").style.display="none";
+
+  							}
+  							else{
+									document.getElementById("third").style.display="block";
+  							}
+
+
+							  document.getElementById("4_author_name").innerHTML=childsnapshotupdate.val().fourthauthorname;
+  							if(childsnapshotupdate.val().fourthauthor==""){
+  								document.getElementById("fourth").style.display="none";
+
+  							}
+  							else{
+									document.getElementById("fourth").style.display="block";
+  							}
+
+
+							  document.getElementById("image-det").innerHTML=childsnapshotupdate.val().design;
+  							if(childsnapshotupdate.val().design==""){
+  								document.getElementById("imageupl").style.display="none";
+
+  							}
+  							else{
+									document.getElementById("imageupl").style.display="block";
+  							}
+  							
+  							
+				        }
+				           
+				      });
+				       
+				      
+             });
+
+
+
+			}
+		</script>
+	</body>
+</html>

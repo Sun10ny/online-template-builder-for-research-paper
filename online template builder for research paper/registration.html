@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="style.css">
+      <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+      <script type="text/javascript" src="connection.js"></script>
+   
+</head>
+<body id="reg-body">
+<div id="grad1">
+<div class="container-app">
+    <div class="row-reg">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <b>Registration Form</b>
+                </div>
+                <div class="form">
+                   
+                        <div class="form-group">
+                            <label for="fullName">Full Name:</label>
+                            <input type="text" class="form-control" id="fullName" name="fullName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="dob">Date of Birth:</label>
+                            <input type="date" class="form-control" id="dob" name="dob" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact">Contact Number:</label>
+                            <input type="tel" class="form-control" id="contact" name="contact" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="qualification">Highest Qualification:</label>
+                            <input type="text" class="form-control" id="qualification" name="qualification" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="currentJob">Current Job:</label>
+                            <input type="text" class="form-control" id="currentJob" name="currentJob" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="reason">Reason for Registration:</label>
+                            <select class="form-control" id="reason" name="reason">
+                                <option value="academic">Academic</option>
+                                <option value="industry">Industry</option>
+                                <option value="company">Company</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password:</label>
+                            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+                        </div>
+                        <button  class="btn-register" onclick="register()">Register</button>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+<script>
+  function register(){
+
+     var name = document.getElementById("fullName").value;
+     var dob = document.getElementById("dob").value;
+     var contact = document.getElementById("contact").value;
+     var qualification = document.getElementById("qualification").value;
+     var currentJob= document.getElementById("currentJob").value;
+     var reason= document.getElementById("reason").value;
+      var email= document.getElementById("email").value;
+      var password= document.getElementById("password").value;
+      var confirmPassword= document.getElementById("confirmPassword").value;
+      if(password != confirmPassword){
+        alert("password missmatch");
+      }
+      else{
+        firebase.auth().createUserWithEmailAndPassword(email, password).then((sucess)=>{
+
+            storethedata(name,dob,contact,qualification,currentJob,reason,email);
+
+        }).catch((error)=>{
+            alert("Account Creation Failed");
+        })
+      }
+
+      function storethedata(name,dob,contact,qualification,currentJob,reason,email){
+            var database=firebase.database().ref("account_details");
+             var data=database.push();
+               data.set({
+                  name: name,
+                  dob:dob,
+                  contact:contact,
+                  qualification: qualification,
+                  currentJob:currentJob,
+                  reason: reason,
+                  email: email
+                  
+               });
+                docreatedatabase(email);
+      }
+
+      function docreatedatabase(email){
+        var database=firebase.database().ref("paper_details");
+             var data=database.push();
+               data.set({
+                 email:email,
+         title:"",
+         authorname:"",
+        department:"",
+         college:"",
+         city:"",
+         country:"",
+         emailid:"",
+         secondauthorname:"",
+         seconddepartment:"",
+         secondcollege:"",
+         secondcity:"",
+         secondcountry:"",
+         secondemailid:"",
+         thirdauthorname:"",
+         thirddepartment:"",
+         thirdcollege:"",
+         thirdcity:"",
+         thirdcountry:"",
+         thirdemailid:"",
+         fourthauthorname:"",
+         fourthdepartment:"",
+         fourthcollege:"",
+         fourthcity:"",
+         fourthcountry:"",
+         fourthemailid:"",
+         abstract:"",
+         heading:"",
+         content:"",
+         secondheading:"",
+         secondcontent:"",
+         thirdheading:"",
+        thirdcontent:"",
+         keyword:"",
+         title:"",
+         author:"",
+         year:"",
+         content:"",
+         secondtitle:"",
+         secondauthor:"",
+         secondyear:"",
+         secondcontent:"",
+         thirdtitle:"",
+         thirdauthor:"",
+         thirdyear:"",
+         thirdcontent:"",
+         result:"",
+         conclusion:"",
+         references:"",
+                  
+     });
+
+               alert("account Created!!");
+              
+
+      }
+
+
+
+
+
+  }
+
+</script>
+</html>

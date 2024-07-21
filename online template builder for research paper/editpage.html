@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Research Paper Sections</title>
+        <link rel="stylesheet" href="style.css"> 
+        <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+        <script type="text/javascript" src="connection.js"></script>
+    </head>
+    <body class="edit-body">
+
+        <div class="container-fluid">
+            <div class="col-md-7">
+                <div class="container-ref">
+                  <h1 class="text-center">Edit You Contents</h1>
+                 
+        
+                  <div class="form-container">
+                      
+                     <div class="form-group">
+                        <center><label for="titleInput">Title:</label></center>
+                        <input type="text" class="form-control" id="titleInput" placeholder="Enter the title" name="titledata">
+                      </div>
+                      <div class="form-group">
+                        <label for="authorName">Author Name:</label>
+                        <input type="text" class="form-control" id="authorName" placeholder="Enter author name" name="authorname">
+                      </div>
+                      <div class="form-group">
+                        <label for="department">Department:</label>
+                        <input type="text" class="form-control" id="department" placeholder="Enter department" name="department">
+                      </div>
+                      <div class="form-group">
+                        <label for="college">College:</label>
+                        <input type="text" class="form-control" id="college" placeholder="Enter college" name="college">
+                      </div>
+                      <div class="form-group">
+                        <label for="city">City:</label>
+                        <input type="text" class="form-control" id="city" placeholder="Enter city" name="city">
+                      </div>
+                      <div class="form-group">
+                        <label for="country">Country:</label>
+                        <input type="text" class="form-control" id="country" placeholder="Enter country" name="country">
+                      </div>
+                      <div class="form-group">
+                        <label for="email">Email ID:</label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                      </div>
+
+                      <div class="form-group">
+                        <label for="authorName">Second Author Name:</label>
+                        <input type="text" class="form-control" id="authorName" placeholder="Enter author name" name="authorname">
+                      </div>
+                      <div class="form-group">
+                        <label for="department">Second Author Department:</label>
+                        <input type="text" class="form-control" id="department" placeholder="Enter department" name="department">
+                      </div>
+                      <div class="form-group">
+                        <label for="college">Second Author College:</label>
+                        <input type="text" class="form-control" id="college" placeholder="Enter college" name="college">
+                      </div>
+                      <div class="form-group">
+                        <label for="city">Second Author City:</label>
+                        <input type="text" class="form-control" id="city" placeholder="Enter city" name="city">
+                      </div>
+                      <div class="form-group">
+                        <label for="country">Second Author Country:</label>
+                        <input type="text" class="form-control" id="country" placeholder="Enter country" name="country">
+                      </div>
+                      <div class="form-group">
+                        <label for="email">Second Author Email ID:</label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                      </div>
+
+                      <div class="form-group">
+                        <label for="authorName">Third Author Name:</label>
+                        <input type="text" class="form-control" id="authorName" placeholder="Enter author name" name="authorname">
+                      </div>
+                      <div class="form-group">
+                        <label for="department">Third Author Department:</label>
+                        <input type="text" class="form-control" id="department" placeholder="Enter department" name="department">
+                      </div>
+                      <div class="form-group">
+                        <label for="college">Third Author College:</label>
+                        <input type="text" class="form-control" id="college" placeholder="Enter college" name="college">
+                      </div>
+                      <div class="form-group">
+                        <label for="city">Third Author City:</label>
+                        <input type="text" class="form-control" id="city" placeholder="Enter city" name="city">
+                      </div>
+                      <div class="form-group">
+                        <label for="country">Third Author Country:</label>
+                        <input type="text" class="form-control" id="country" placeholder="Enter country" name="country">
+                      </div>
+                      <div class="form-group">
+                        <label for="email">Third Author Email ID:</label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                      </div>
+
+                      <div class="form-group">
+                        <label for="authorName">Fourth Author Name:</label>
+                        <input type="text" class="form-control" id="authorName" placeholder="Enter author name" name="authorname">
+                      </div>
+                      <div class="form-group">
+                        <label for="department">Fourth Author Department:</label>
+                        <input type="text" class="form-control" id="department" placeholder="Enter department" name="department">
+                      </div>
+                      <div class="form-group">
+                        <label for="college">Fourth Author College:</label>
+                        <input type="text" class="form-control" id="college" placeholder="Enter college" name="college">
+                      </div>
+                      <div class="form-group">
+                        <label for="city">Fourth Author City:</label>
+                        <input type="text" class="form-control" id="city" placeholder="Enter city" name="city">
+                      </div>
+                      <div class="form-group">
+                        <label for="country">Fourth Author Country:</label>
+                        <input type="text" class="form-control" id="country" placeholder="Enter country" name="country">
+                      </div>
+                      <div class="form-group">
+                        <label for="email">Fourth Author Email ID:</label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                      </div>
+
+                      
+                   
+                      <div class="form-group">
+                        <label for="referencesTextarea">References:</label>
+                        <textarea class="form-control" id="abstractTextarea" rows="8" placeholder="Enter your references" name="references"></textarea>
+                      </div>
+                      <div class="button-container">
+                        <center><button onclick="refer()" class="btn-save">Save</button></center>
+                      </div>
+                 
+                    <center><button onclick="preview()" class="btn-save">Preview Paper</button></center>
+                  </div>
+                </div>
+              
+        
+            </div>
+          </div>
+        </body>
+		

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Research Paper Sections</title>
+  <link rel="stylesheet" href="style.css"> 
+    <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+   <script type="text/javascript" src="connection.js"></script>
+  
+</head>
+
+<body class="title-body">
+
+  <div class="container-fluid">
+    <div class="title-row">
+
+      <!-- My Sections -->
+      <div class="section-group">
+        <h1>My Sections</h1>
+  
+        <div class="btn-group">
+          <a href="title.html"><button type="button" class="section-button">Title</button></a>
+          <a href="author.html"><button type="button" class=" section-button">Author</button></a>
+          <a href="abstract.html"><button type="button" class="section-button">Abstract</button></a>
+          <a href="keyword.html"><button type="button" class="section-button">Keywords</button></a>
+          <a href="introduction.html"><button type="button" class="section-button">Introduction</button></a>
+          <a href="literature.html"><button type="button" class="section-button">Literature Review</button></a>
+          <a href="design.html"><button type="button" class="section-button">Design and Modeling</button></a>
+          <a href="result.html"><button type="button" class="section-button">Results</button></a>
+          <a href="conclusion.html"><button type="button" class="section-button">Conclusion</button></a>
+          <a href="references.html"><button type="button" class="section-button">References</button></a>
+        </div>
+      </div>
+
+      <!-- Title Input Page -->
+      <div class="col-md-7">
+        <div class="container-title">
+          <h1 class="text-center">Title</h1>
+          <div class="form-container">
+          
+              <div class="form-group">
+                <center><label for="titleInput">Title:</label></center>
+                <input type="text" class="form-control" id="titleInput" placeholder="Enter the title" name="titledata">
+              </div>
+              <center><button onclick="update()" class="btn-save">Save</button></center>
+            
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bootstrap JS and Popper.js -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+<script type="text/javascript">
+
+  var idd;
+
+  function update(){
+
+      firebase.database().ref('paper_details').once('value',function(snapshotupdate){
+      snapshotupdate.forEach(function(childsnapshotupdate){ 
+        var id=childsnapshotupdate.val().email;
+    
+        if(id==idd){
+          childsnapshotupdate.ref.update({"title":document.getElementById("titleInput").value});
+          window.location.href="author.html";
+        }
+           
+      });
+       
+      
+    });
+  }
+
+  firebase.auth().onAuthStateChanged(function(user){
+  if(user)
+  {
+        idd=user.email;         
+  }
+  else{
+     
+  }
+
+});
+</script>
+
+</html>

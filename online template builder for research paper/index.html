@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About and Login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-size: cover;
+            background: linear-gradient(to bottom, #02aab0, #00cdac);
+        }
+
+        h1 {
+            color: papayawhip;
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif;
+            font-style: oblique;
+            font-weight: bold;
+            margin-bottom: 30px;
+            font-size: 60px;
+        }
+
+        .card-header {
+            text-align: center;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .btn-group button {
+            width: 200px; 
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1>Application For Collaborative Writing Tool For Research</h1>
+    <div class="row">
+        <!-- About Section -->
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-header">
+                    <b>About</b>
+                </div>
+                <div class="card-body">
+                    <p style="font-style:oblique;">"Unlock the power of seamless research paper creation with our IEEE template builder! Elevate your writing experience, effortlessly align with IEEE standards, and focus on your research. Your ideas matter present them with precision and professionalism. Try our template today – where your brilliance meets the excellence."</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Login Section -->
+        <div class="col-md-6">
+            <div class="btn-group">
+                <a href="{{ url_for('registration')}}"><button type="button" class="btn btn-primary">Create Account</button></a>
+                <a href="{{ url_for('dashboard')}}"><button type="button" class="btn btn-primary">Login</button></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Research Paper Sections</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+   <script type="text/javascript" src="connection.js"></script> 
+  
+</head>
+<body class="design-body">
+
+  <div class="container-fluid">
+    <div class="title-row">
+
+     
+      <div class="section-group">
+        <h1>My Sections</h1>
+
+        <div class="btn-group">
+          <a href="editpage1.html"><button type="button" class="section-button">Title</button></a>
+          <a href="author1.html"><button type="button" class=" section-button">Author</button></a>
+          <a href="abstract1.html"><button type="button" class="section-button">Abstract</button></a>
+          <a href="keyword1.html"><button type="button" class="section-button">Keywords</button></a>
+          <a href="introduction1.html"><button type="button" class="section-button">Introduction</button></a>
+          <a href="literature1.html"><button type="button" class="section-button">Literature Review</button></a>
+          <a href="design1.html"><button type="button" class="section-button">Design and Modeling</button></a>
+          <a href="result1.html"><button type="button" class="section-button">Results</button></a>
+          <a href="conclusion1.html"><button type="button" class="section-button">Conclusion</button></a>
+          <a href="references1.html"><button type="button" class="section-button">References</button></a>
+        </div>
+      </div> 
+
+      <!-- Design Page -->
+      <div class="col-md-7">
+        <div class="container-design">
+          <h1 class="text-center">Edit Design and Modeling</h1>
+          <hr>
+
+          <div class="form-container">
+            
+              <div class="form-group">
+                <label for="imageUpload">Upload Your Image:</label>
+                <input type="file" class="form-control-file" id="image" name="image">
+              </div>
+
+              <div class="button-container">
+                <center><button onclick="design()" class="btn-save">Upload Image</button></center>
+              </div>
+            
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+<script type="text/javascript">
+
+  var idd;
+
+  function design(){
+
+      firebase.database().ref('paper_details').once('value',function(snapshotupdate){
+      snapshotupdate.forEach(function(childsnapshotupdate){ 
+        var id=childsnapshotupdate.val().email;
+    
+        if(id==idd){
+          childsnapshotupdate.ref.update({"design":document.getElementById("image").value});
+          alert("image uploaded");
+          window.location.href="result1.html";
+        }
+           
+      });
+       
+      
+    });
+  }
+
+  firebase.auth().onAuthStateChanged(function(user){
+  if(user)
+  {
+        idd=user.email;         
+  }
+  else{
+     
+  }
+
+});
+</script>
+</html>

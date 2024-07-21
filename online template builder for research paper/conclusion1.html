@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Research Paper Sections</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+  <script type="text/javascript" src="connection.js"></script>
+
+</head>
+<body class="conclusion-body">
+
+  <div class="container-fluid">
+    <div class="title-row">
+
+      <!-- My Sections -->
+      <div class="section-group">
+        <h1>My Sections</h1>
+
+        <div class="btn-group">
+          <a href="editpage1.html"><button type="button" class="section-button">Title</button></a>
+          <a href="author1.html"><button type="button" class=" section-button">Author</button></a>
+          <a href="abstract1.html"><button type="button" class="section-button">Abstract</button></a>
+          <a href="keyword1.html"><button type="button" class="section-button">Keywords</button></a>
+          <a href="introduction1.html"><button type="button" class="section-button">Introduction</button></a>
+          <a href="literature1.html"><button type="button" class="section-button">Literature Review</button></a>
+          <a href="design1.html"><button type="button" class="section-button">Design and Modeling</button></a>
+          <a href="result1.html"><button type="button" class="section-button">Results</button></a>
+          <a href="conclusion1.html"><button type="button" class="section-button">Conclusion</button></a>
+          <a href="references1.html"><button type="button" class="section-button">References</button></a>
+        </div>
+      </div>  
+
+      <!-- Conclusion Page -->
+      <div class="col-md-7">
+        <div class="container-conclusion">
+          <h1 class="text-center">Edit Conclusion</h1>
+          <hr>
+
+          <div class="form-container">
+           
+              <div class="form-group">
+                <label for="conclusionTextarea">Conclusion:</label>
+                <textarea class="form-control" id="conclusionTextarea" rows="8" placeholder="Enter your conclusion" name="conclusion"></textarea>
+              </div>
+              <!--<div class="button-container">-->
+                <center><button  onclick="conclu()" class="btn-save">Save</button></center>
+              <!--</div>-->
+          
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+<script type="text/javascript">
+
+  var idd;
+
+  function conclu(){
+
+      firebase.database().ref('paper_details').once('value',function(snapshotupdate){
+      snapshotupdate.forEach(function(childsnapshotupdate){ 
+        var id=childsnapshotupdate.val().email;
+    
+        if(id==idd){
+          childsnapshotupdate.ref.update({"conclusion":document.getElementById("conclusionTextarea").value});
+          window.location.href="references1.html";
+        }
+           
+      });
+       
+      
+    });
+  }
+
+  firebase.auth().onAuthStateChanged(function(user){
+  if(user)
+  {
+        idd=user.email;         
+  }
+  else{
+     
+  }
+
+});
+</script>
+</html>

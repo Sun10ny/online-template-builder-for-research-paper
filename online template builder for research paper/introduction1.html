@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Research Paper Sections</title>
+  <link rel="stylesheet" href="style.css"> 
+        <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+   <script type="text/javascript" src="connection.js"></script>
+  
+</head>
+<body class="intro-body">
+
+  <div class="container-fluid">
+    <div class="title-row">
+
+      <!-- My Sections -->
+      <div class="section-group">
+        <h1>My Sections</h1>
+
+        <div class="btn-group">
+          <a href="editpage1.html"><button type="button" class="section-button">Title</button></a>
+          <a href="author1.html"><button type="button" class=" section-button">Author</button></a>
+          <a href="abstract1.html"><button type="button" class="section-button">Abstract</button></a>
+          <a href="keyword1.html"><button type="button" class="section-button">Keywords</button></a>
+          <a href="introduction1.html"><button type="button" class="section-button">Introduction</button></a>
+          <a href="literature1.html"><button type="button" class="section-button">Literature Review</button></a>
+          <a href="design1.html"><button type="button" class="section-button">Design and Modeling</button></a>
+          <a href="result1.html"><button type="button" class="section-button">Results</button></a>
+          <a href="conclusion1.html"><button type="button" class="section-button">Conclusion</button></a>
+          <a href="references1.html"><button type="button" class="section-button">References</button></a>
+        </div>
+      </div>
+
+      <!-- Introduction Page -->
+      <div class="col-md-7">
+        <div class="container-intro">
+          <h1 class="text-center">Edit Introduction</h1>
+          <hr>
+
+          <div class="form-container">
+           
+              <div class="form-group">
+                <label for="headingInput">Heading:</label>
+                <input type="text" class="form-control" id="headingInput" placeholder="Enter heading" name="heading">
+              </div>
+              <div class="form-group">
+                <label for="contentTextarea">Content:</label>
+                <textarea class="form-control" id="contentTextarea" rows="5" placeholder="Enter content" name="content"></textarea>
+              </div>
+              <center><button onclick="intro()" class="btn-save">Save</button></center>
+         
+            <div class="button-container d-flex justify-content-between">
+                <a href="secondintroduction1.html">
+                <center><button type="button" class="btn-add">Add</button></center>
+                </a>
+           </div>
+          </div>
+
+           
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+    <script type="text/javascript">
+
+  var idd;
+
+  function intro(){
+
+      firebase.database().ref('paper_details').once('value',function(snapshotupdate){
+      snapshotupdate.forEach(function(childsnapshotupdate){ 
+        var id=childsnapshotupdate.val().email;
+    
+        if(id==idd){
+          childsnapshotupdate.ref.update({"heading":document.getElementById("headingInput").value});
+           childsnapshotupdate.ref.update({"content":document.getElementById("contentTextarea").value});
+          window.location.href="literature1.html";
+        }
+           
+      });
+       
+      
+    });
+  }
+
+  firebase.auth().onAuthStateChanged(function(user){
+  if(user)
+  {
+        idd=user.email;         
+  }
+  else{
+     
+  }
+
+});
+</script>
+</body>
+</html>
